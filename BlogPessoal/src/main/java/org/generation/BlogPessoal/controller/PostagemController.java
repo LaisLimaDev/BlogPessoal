@@ -26,6 +26,7 @@ public class PostagemController<repository> {
 
 	@Autowired /* a responsabilidade de instanciação é dada toda ao Spring , autowired é a instanciação de injeção de dependencias*/
 	private PostagemRepository repository;
+	
 	@GetMapping
 	public ResponseEntity<List<Postagem> GetAll(){
 		return ResponseEntity.ok(repository.findAll());
@@ -35,7 +36,7 @@ public class PostagemController<repository> {
 		@GetMapping("{/id}")
 		public ResponseEntity<Postagem> GetById(@PathVariable long id){
 			return repository.findById(id)
-					.map(resp -> REsponseEntity.ok(resp).orElse(ResponseEntity.notFound().build()));
+					.map(resp -> ResponseEntity.ok(resp).orElse(ResponseEntity.notFound().build()));
 		}
 
 		@GetMapping("título/{título}")
@@ -56,6 +57,8 @@ public class PostagemController<repository> {
 				return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
 
 			}
+			
+		
 			{
 				@DeleteMapping ("/{id}")
 			public void delete(@PathVariable long id){
