@@ -9,56 +9,69 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.sun.istack.NotNull;
-
-
-
 @Entity
-@Table (name= "Postagem")
-
+@Table (name = "tb_postagem")
 public class Postagem {
+	
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@NotNull
-	@Size (min =5 , max = 100)
-	private String título;
+	private String nome;
 	
-
 	@NotNull
-	@Size (min =10 , max = 1000)
-	private String texto;
+	@Size(min = 5, max = 100)
+	private String titulo;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date = new java.sql.Date(System.currentTimeMillis());
+	@NotNull
+	@Size(min = 10, max = 1000)
+	private String texto;	
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getTítulo() {
-		return título;
+
+	public String getNome() {
+		return nome;
 	}
-	public void setTítulo(String título) {
-		this.título = título;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
 	public String getTexto() {
 		return texto;
 	}
+
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
 
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+    private Date data = new java.sql.Date(System.currentTimeMillis());
 
 }
